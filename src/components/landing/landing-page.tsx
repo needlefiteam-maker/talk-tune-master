@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ArrowDown, ArrowRight, AudioLines, Check, ChevronRight, FileText, Menu, Mic, MoveRight, Pause, Repeat2, TrendingUp, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { AnalysisPreview, VoiceMark } from "./landing/analysis-preview";
+import { AnalysisPreview, VoiceMark } from "./analysis-preview";
 
 const features = [
   { icon: TrendingUp, name: "Pace", text: "Find a rhythm people can follow.", visual: "pace", value: "142", unit: "words / min" },
