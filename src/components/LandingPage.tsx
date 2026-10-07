@@ -1,121 +1,37 @@
-import React from 'react';
-import { Mic, BarChart3, Clock, Type, Play, Volume2 } from 'lucide-react';
+import { useState } from "react";
+import { ArrowDown, ArrowRight, AudioLines, Check, ChevronRight, FileText, Menu, Mic, MoveRight, Pause, Repeat2, TrendingUp, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { AnalysisPreview, VoiceMark } from "./landing/analysis-preview";
 
-const LandingPage = () => {
-  return (
-    <div className="min-h-screen bg-[#05070a] text-[#f8f9fa] font-sans selection:bg-[#bef264] selection:text-black">
-      {/* Navigation */}
-      <nav className="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-        <div className="text-xl font-bold tracking-tighter italic">ELOQUENCE</div>
-        <div className="hidden md:flex gap-8 text-sm font-medium opacity-70">
-          <a href="#" className="hover:text-[#bef264] transition-colors">Method</a>
-          <a href="#" className="hover:text-[#bef264] transition-colors">Pricing</a>
-          <a href="#" className="hover:text-[#bef264] transition-colors">About</a>
-        </div>
-        <button className="bg-[#f8f9fa] text-black px-6 py-2 rounded-full text-sm font-bold hover:bg-[#bef264] transition-all duration-300">
-          Get Started
-        </button>
-      </nav>
-
-      {/* Hero Section */}
-      <main className="max-w-7xl mx-auto px-8 pt-20 pb-32">
-        <div className="max-w-3xl mb-24">
-          <h1 className="text-6xl md:text-8xl font-black tracking-tight leading-[0.9] mb-8">
-            MASTER THE ART <br />
-            <span className="text-[#bef264]">OF SPEAKING.</span>
-          </h1>
-          <p className="text-xl md:text-2xl opacity-60 max-w-xl leading-relaxed">
-            Real-time vocal analysis for the modern professional. Eliminate fillers, optimize your pace, and speak with absolute clarity.
-          </p>
-          <div className="mt-12 flex flex-wrap gap-4">
-            <button className="bg-[#bef264] text-black px-8 py-4 rounded-full text-lg font-bold hover:scale-105 transition-transform">
-              Start Training Now
-            </button>
-            <button className="border border-white/20 px-8 py-4 rounded-full text-lg font-bold hover:bg-white/5 transition-colors">
-              Watch Demo
-            </button>
-          </div>
-        </div>
-
-        {/* Analysis UI Mockup */}
-        <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-[#bef264]/20 to-transparent rounded-[2rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-          <div className="relative bg-[#0d1117] border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl">
-            {/* Analysis Header */}
-            <div className="p-8 border-b border-white/5 flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-[#bef264] rounded-full flex items-center justify-center text-black">
-                  <Mic size={24} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold">Session Analysis</h3>
-                  <p className="text-xs opacity-50 uppercase tracking-widest">Recorded Today • 04:20 PM</p>
-                </div>
-              </div>
-              
-              <div className="flex gap-4">
-                <div className="bg-white/5 px-6 py-4 rounded-2xl border border-white/5 flex flex-col items-center min-w-[100px]">
-                  <span className="text-2xl font-black text-[#bef264]">142</span>
-                  <span className="text-[10px] opacity-50 font-bold uppercase tracking-wider">WPM</span>
-                </div>
-                <div className="bg-white/5 px-6 py-4 rounded-2xl border border-white/5 flex flex-col items-center min-w-[100px]">
-                  <span className="text-2xl font-black text-[#bef264]">7</span>
-                  <span className="text-[10px] opacity-50 font-bold uppercase tracking-wider">Fillers</span>
-                </div>
-                <div className="bg-white/5 px-6 py-4 rounded-2xl border border-white/5 flex flex-col items-center min-w-[100px]">
-                  <span className="text-2xl font-black text-[#bef264]">1.8s</span>
-                  <span className="text-[10px] opacity-50 font-bold uppercase tracking-wider">Avg Pause</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Waveform Visualization */}
-            <div className="p-8 h-48 flex items-center gap-1 justify-between opacity-80">
-              {[...Array(60)].map((_, i) => (
-                <div 
-                  key={i} 
-                  className="w-1 bg-[#bef264]/30 rounded-full transition-all duration-500 hover:bg-[#bef264]"
-                  style={{ 
-                    height: `${Math.max(10, Math.sin(i * 0.2) * 80 + 20)}%`,
-                    opacity: i > 25 && i < 35 ? 0.3 : 1
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* Transcript & Controls */}
-            <div className="p-8 bg-black/40 border-t border-white/5 grid md:grid-cols-3 gap-8">
-              <div className="md:col-span-2">
-                <div className="flex items-center gap-2 mb-4 opacity-50">
-                  <Type size={14} />
-                  <span className="text-xs font-bold uppercase tracking-widest">Transcript</span>
-                </div>
-                <p className="text-lg leading-relaxed opacity-90 italic">
-                  "So, basically... <span className="bg-red-500/20 text-red-300 px-1 rounded">um</span>, I think we should focus on the, <span className="bg-red-500/20 text-red-300 px-1 rounded">like</span>, core value proposition before we pivot to the, <span className="bg-red-500/20 text-red-300 px-1 rounded">uh</span>, secondary markets."
-                </p>
-              </div>
-              <div className="flex flex-col justify-end items-end gap-6">
-                 <div className="flex gap-4 items-center w-full bg-white/5 p-4 rounded-xl border border-white/5">
-                    <button className="w-10 h-10 bg-[#bef264] rounded-full flex items-center justify-center text-black hover:scale-105 transition-transform">
-                      <Play size={18} fill="currentColor" />
-                    </button>
-                    <div className="flex-1 h-1 bg-white/10 rounded-full relative">
-                      <div className="absolute top-0 left-0 w-1/3 h-full bg-[#bef264] rounded-full"></div>
-                    </div>
-                    <Volume2 size={16} className="opacity-50" />
-                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="max-w-7xl mx-auto px-8 py-20 border-t border-white/5 text-center">
-        <p className="opacity-40 text-sm">© 2024 Eloquence Training. Master the art of speaking.</p>
-      </footer>
-    </div>
-  );
-};
-
-export default LandingPage;
+const features = [
+  { icon: TrendingUp, name: "Pace", text: "Find a rhythm people can follow.", visual: "pace", value: "142", unit: "words / min" },
+  { icon: Pause, name: "Pauses", text: "Make a little silence work for you.", visual: "pauses", value: "1.8", unit: "seconds" },
+  { icon: AudioLines, name: "Filler words", text: "Notice the habits you don’t hear.", visual: "fillers", value: "um", unit: "uh" },
+  { icon: AudioLines, name: "Vocal variation", text: "Bring your ideas to life with your voice.", visual: "pitch", value: "", unit: "" },
+  { icon: FileText, name: "Transcript", text: "See your words in a new light.", visual: "transcript", value: "", unit: "" },
+];
+function FeatureVisual({ type, value, unit }: { type: string; value: string; unit: string }) {
+  if (type === "pitch") return <svg className="feature-pitch" viewBox="0 0 170 64" aria-hidden="true"><path d="M0 42 C12 42 12 13 25 13 S38 52 51 52 S64 25 76 25 S91 40 103 40 S120 10 132 10 S149 34 170 26" /></svg>;
+  if (type === "transcript") return <div className="feature-transcript" aria-hidden="true"><span>The thing about</span><span>creating <mark>um</mark> content</span><span>is just getting started.</span></div>;
+  if (type === "fillers") return <div className="feature-fillers" aria-hidden="true"><span>{value}</span><span>{unit}</span><span>like</span></div>;
+  return <div className={`feature-number ${type}`} aria-hidden="true"><strong>{value}</strong><span>{unit}</span>{type === "pauses" && <div className="pause-dashes"><i /><i /><i /><i /><i /></div>}</div>;
+}
+export default function LandingPage() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [dialog, setDialog] = useState<"start" | "signin" | null>(null);
+  const start = () => setDialog("start");
+  const closeMenu = () => setMenuOpen(false);
+  return <div className="landing-page">
+    <header className="site-header"><div className="site-nav page-width"><a href="#" className="brand" aria-label="Cadence home"><VoiceMark /><span>cadence<span className="brand-period">.</span></span></a><nav className="desktop-nav" aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="#features">Features</a></nav><div className="nav-actions"><Button variant="ghost" className="sign-in" onClick={() => setDialog("signin")}>Sign in</Button><Button variant="speaking" className="nav-cta" onClick={start}>Start speaking <ArrowRight /></Button><Button variant="ghost" size="icon" className="menu-toggle" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button></div></div>{menuOpen && <nav className="mobile-nav page-width" aria-label="Mobile navigation"><a href="#how-it-works" onClick={closeMenu}>How it works <ChevronRight size={16} /></a><a href="#features" onClick={closeMenu}>Features <ChevronRight size={16} /></a><Button variant="ghost" onClick={() => { closeMenu(); setDialog("signin"); }}>Sign in <ArrowRight /></Button></nav>}</header>
+    <main>
+      <section className="hero page-width" aria-labelledby="hero-title"><div className="hero-intro"><div className="eyebrow hero-eyebrow"><span className="status-dot" /> YOUR VOICE. ONLY BETTER.</div><h1 id="hero-title">Become a better speaker<br className="desktop-break" /> by actually seeing<br className="desktop-break" /> <span>how you speak.</span></h1><p className="hero-description">Record yourself, get clear feedback on your delivery, and practice<br className="desktop-break" /> the skills that make people want to keep listening.</p><div className="hero-actions"><Button variant="speaking" size="cta" onClick={start}>Start speaking <ArrowRight /></Button><Button variant="quiet" size="cta" asChild><a href="#how-it-works">See how it works <ArrowDown size={15} /></a></Button></div><p className="hero-note">A clearer voice starts with a little awareness.</p></div><div className="hero-product"><AnalysisPreview /></div><div className="creator-note"><span>FOR THE MOMENTS YOUR VOICE MATTERS</span><div><span>Content creators</span><i /><span>Personal brands</span><i /><span>Everyday conversations</span></div></div></section>
+      <section className="problem-section" aria-labelledby="problem-title"><div className="page-width problem-grid"><div><div className="eyebrow section-eyebrow">A LITTLE AWARENESS CHANGES EVERYTHING</div><h2 id="problem-title">You can hear yourself.<br />But you can’t always hear<br /><span>what you’re doing wrong.</span></h2></div><div className="problem-copy"><p>When you’re speaking, it’s hard to notice your own habits.</p><p>You rush through your best idea. Fill a little silence with “um” and “uh”. Settle into the same tone. Your message is there. Your delivery gets in the way.</p><p className="problem-conclusion">Make those patterns visible.<br /><span>Then make your next take better.</span></p></div></div></section>
+      <section id="how-it-works" className="how-section page-width" aria-labelledby="how-title"><div className="section-heading"><div className="eyebrow section-eyebrow">THE PRACTICE LOOP</div><h2 id="how-title">Speak. Analyze. Improve.<br /><span>And go again.</span></h2><p>Progress doesn’t need to be complicated. Just consistent.</p></div><div className="steps-grid"><div className="step"><div className="step-top"><span>01</span><Mic size={21} /><MoveRight className="step-arrow" size={22} /></div><div className="step-graphic speak-graphic" aria-hidden="true">{Array.from({ length: 17 }, (_, i) => <i key={i} />)}</div><h3>Speak</h3><p>Record yourself talking naturally.</p><span className="step-detail">An idea. A story. Your next video.</span></div><div className="step"><div className="step-top"><span>02</span><AudioLines size={21} /><MoveRight className="step-arrow" size={22} /></div><div className="step-graphic analyze-graphic" aria-hidden="true"><span>142 <small>WPM</small></span><div><i /><i /><i /><i /><i /><i /><i /><i /><i /></div></div><h3>Analyze</h3><p>See measurable patterns in your delivery.</p><span className="step-detail">Less guessing. More understanding.</span></div><div className="step"><div className="step-top"><span>03</span><Repeat2 size={21} /></div><div className="step-graphic improve-graphic" aria-hidden="true"><TrendingUp /><span>A little better,<br />every time.</span></div><h3>Improve</h3><p>Practice one specific skill and try again.</p><span className="step-detail">Small changes. A stronger voice.</span></div></div></section>
+      <section id="features" className="features-section" aria-labelledby="features-title"><div className="page-width"><div className="features-heading"><div><div className="eyebrow section-eyebrow">GO BEYOND “THAT SOUNDED OKAY”</div><h2 id="features-title">Understand your delivery.<br /><span>One detail at a time.</span></h2></div><p>Clear signals. Practical feedback.<br />A better feel for how you come across.</p></div><div className="features-grid">{features.map(({ icon: Icon, name, text, visual, value, unit }) => <article className="feature" key={name}><div className="feature-icon"><Icon size={18} /></div><FeatureVisual type={visual} value={value} unit={unit} /><h3>{name}</h3><p>{text}</p></article>)}</div></div></section>
+      <section className="final-section page-width" aria-labelledby="final-title"><VoiceMark className="final-mark" /><div className="eyebrow">YOUR VOICE IS WORTH WORKING ON</div><h2 id="final-title">Your next conversation is<br /><span>your next practice session.</span></h2><Button variant="speaking" size="cta" onClick={start}>Start speaking <ArrowRight /></Button><p>Speak. Analyze. Improve. Repeat.</p></section>
+    </main>
+    <footer className="site-footer page-width"><a href="#" className="brand footer-brand"><VoiceMark /><span>cadence<span className="brand-period">.</span></span></a><span>A little more clarity. A little more you.</span><span className="footer-copyright">© 2026 Cadence</span></footer>
+    <Dialog open={dialog !== null} onOpenChange={(open) => { if (!open) setDialog(null); }}><DialogContent className="prototype-dialog"><div className="dialog-mark"><VoiceMark /></div><DialogHeader><DialogTitle>{dialog === "signin" ? "Your voice. Your space." : "A better voice is on the way."}</DialogTitle><DialogDescription>{dialog === "signin" ? "Sign-in will be available when Cadence launches. There’s no account to create just yet." : "Cadence is a preview of what’s coming. Recording and speaking feedback aren’t available yet."}</DialogDescription></DialogHeader><div className="dialog-detail"><Check size={16} /><span>For now, explore a sample speaking analysis.</span></div><Button variant="speaking" size="cta" asChild><a href="#analysis-preview" onClick={() => setDialog(null)}>Explore the preview <ArrowRight /></a></Button></DialogContent></Dialog>
+  </div>;
+}
