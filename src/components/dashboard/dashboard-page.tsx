@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { VoiceMark } from "@/components/landing/analysis-preview";
 
-const firstRecordingWave = Array.from({ length: 64 }, (_, i) => 4 + Math.abs(Math.sin(i * 0.31) * Math.cos(i * 0.13)) * 26 + Math.abs(Math.sin(i * 2.3)) * 10);
+const firstRecordingWave = Array.from({ length: 64 }, (_, i) => 4 + Math.abs(Math.sin(i * 0.31) * Math.cos(i * 0.13)) * 26 + Math.abs(Math.sin(i * 2.3)) * 10).map(v => Math.round(v * 4) / 4);
 
 const week = [
   { day: "M", state: "done" },
