@@ -3,7 +3,7 @@
 @source "../src";
 @custom-variant dark (&:is(.dark *));
 @theme inline {
-  --font-sans: "DM Sans", sans-serif;
+  --font-sans: "Quicksand", sans-serif;
   --color-background: var(--background); --color-foreground: var(--foreground);
   --color-card: var(--card); --color-card-foreground: var(--foreground);
   --color-popover: var(--card); --color-popover-foreground: var(--foreground);
@@ -24,12 +24,12 @@
   --destructive: oklch(0.72 0.14 25); --subtle: oklch(0.52 0.013 260);
   --surface-band: oklch(0.165 0.012 260); --highlight: oklch(0.77 0.085 68);
   --highlight-bg: oklch(0.32 0.038 67); --shadow-product: 0 24px 90px oklch(0.07 0.009 260 / 0.35);
-  --heading-font: "Manrope", sans-serif;
+  --heading-font: "Quicksand", sans-serif;
 }
 @layer base {
   * { border-color: var(--border); box-sizing: border-box; }
   html { scroll-behavior: smooth; scroll-padding-top: 32px; }
-  body { margin: 0; background: var(--background); color: var(--foreground); font-family: "DM Sans", sans-serif; -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: var(--background); color: var(--foreground); font-family: "Quicksand", sans-serif; -webkit-font-smoothing: antialiased; }
   h1,h2,h3,p { margin: 0; } h1,h2,h3 { font-family: var(--heading-font); }
   a { text-decoration: none; color: inherit; } button,a { -webkit-tap-highlight-color: transparent; }
   a:focus-visible { outline: 2px solid var(--primary); outline-offset: 6px; border-radius: 2px; }
